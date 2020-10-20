@@ -10,7 +10,7 @@ Training script written and tested for in Python 3.8
 
 * Install all Python dependencies using `pip install -r requirements.txt`
 
-To train the model and output the SavedModel object, run `python -m model.train`. This will output the SavedModel files to `classifier/saved_models/1`.
+To train the model and output the SavedModel object, run `python -m classifier.train`. This will output the SavedModel files to `classifier/saved_models/1`.
 
 ## Serve the Model
 
@@ -27,7 +27,7 @@ Instructions paraphrased and adapted from the TensorFlow Serving repo.
 **To start the server:**
 
 ```
-docker run -t --rm -p 8501:8501 \
+docker run -t -d --rm -p 8501:8501 \
     -v "$ModelPath/saved_models:/models/sentiment_analysis" \
     -e MODEL_NAME=sentiment_analysis \
     tensorflow/serving
