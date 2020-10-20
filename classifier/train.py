@@ -31,7 +31,7 @@ class ModelTrainer:
         # Model Architecture parameters
         self.embed_size = 128
         self.max_features = 20000
-        self.epochs = 1
+        self.epochs = 10
         self.batch_size = 128
         self.max_len = 500
 
