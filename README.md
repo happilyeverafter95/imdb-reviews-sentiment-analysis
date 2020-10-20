@@ -27,7 +27,7 @@ Instructions paraphrased and adapted from the TensorFlow Serving repo.
 **To start the server:**
 
 ```
-docker run -t --rm -p 8501:8501 \
+docker run -t -d --rm -p 8501:8501 \
     -v "$ModelPath/saved_models:/models/sentiment_analysis" \
     -e MODEL_NAME=sentiment_analysis \
     tensorflow/serving
