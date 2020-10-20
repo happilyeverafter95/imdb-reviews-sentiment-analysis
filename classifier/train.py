@@ -1,12 +1,13 @@
 import logging
 import re
 import string
+import time
 from typing import Tuple, Union, List, Dict
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
 import tensorflow_datasets as tfds
+from tensorflow.keras.layers.experimental.preprocessing import TextVectorization
 
 level = logging.INFO
 logging.basicConfig(level=level)
@@ -30,7 +31,7 @@ class ModelTrainer:
         # Model Architecture parameters
         self.embed_size = 128
         self.max_features = 20000
-        self.epochs = 10
+        self.epochs = 1
         self.batch_size = 128
         self.max_len = 500
 
@@ -74,7 +75,7 @@ class ModelTrainer:
         model = self.init_model(train_examples)
         model.fit(train_examples, train_labels, epochs=self.epochs, batch_size=self.batch_size)
         self.tf_model_wrapper = TFModel(model)
-        tf.saved_model.save(self.tf_model_wrapper.model, 'classifier/saved_models/1',
+        tf.saved_model.save(self.tf_model_wrapper.model, f'classifier/saved_models/{int(time.time())}',
                             signatures={'serving_default': self.tf_model_wrapper.prediction})
         logger.info('saving SavedModel to saved_models/1')
 
