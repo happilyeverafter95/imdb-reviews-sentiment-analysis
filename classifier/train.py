@@ -77,3 +77,8 @@ class ModelTrainer:
         tf.saved_model.save(self.tf_model_wrapper.model, 'classifier/saved_models/1',
                             signatures={'serving_default': self.tf_model_wrapper.prediction})
         logger.info('saving SavedModel to saved_models/1')
+
+
+if __name__ == '__main__':
+    model_trainer = ModelTrainer()
+    model_trainer.train()
