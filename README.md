@@ -22,19 +22,21 @@ Instructions paraphrased and adapted from the TensorFlow Serving repo.
 
 1. Install Docker
 2. Fetch the latest version of TensorFlow Serving Docker docker pull tensorflow/serving
-3. Specify the directory for export. In the root directory of this repo, run ModelPath="$(pwd)/classifier"
+3. Specify the directory for export. In the root directory of this repo, run `ModelPath="$(pwd)/classifier"`
    
 **To start the server:**
 
+```
 docker run -t --rm -p 8501:8501 \
-    -v "$ModelPath/:/saved_models/sentiment_analysis" \
+    -v "$ModelPath/saved_models:/models/sentiment_analysis" \
     -e MODEL_NAME=sentiment_analysis \
     tensorflow/serving
+```
 
 ### Sample Curl Command
 
 ```
-curl -d '{"signature_name": "predict","inputs":{"input": "raw text goes here"}}' \
+curl -d '{"inputs":{"review": ["worst movie EVER"]}}' \
   -X POST http://localhost:8501/v1/models/sentiment_analysis:predict
 ```
 
