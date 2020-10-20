@@ -10,7 +10,7 @@ Training script written and tested for in Python 3.8
 
 * Install all Python dependencies using `pip install -r requirements.txt`
 
-To train the model and output the SavedModel object, run `python -m classifier.train`. This will output the SavedModel files to `classifier/saved_models/1`.
+To train the model and output the SavedModel object, run `python -m classifier.train`. This will output the SavedModel files to `classifier/saved_models` (the SavedModel subdirectory will be based on the integer timestamp at train time -- TensorFlow serving will pick up the most recent one).
 
 ## Serve the Model
 
@@ -40,4 +40,4 @@ curl -d '{"inputs":{"review": ["worst movie EVER"]}}' \
   -X POST http://localhost:8501/v1/models/sentiment_analysis:predict
 ```
 
-All preprocessing steps are applied to the input prior to prediction. You might also notice that the payload has an additional parameter alongside the actual prediction. This was defined as a part of the model signature and can be customized to provide more meaningful metadata.
+All preprocessing steps are applied to the input prior to prediction. You might also notice that the payload has an additional parameter alongside the actual prediction. This was defined as a part of the model signature and can be [customized](https://github.com/happilyeverafter95/tensorflow-serving-2.0/blob/main/classifier/train.py#L24) to provide more meaningful metadata.
