@@ -47,8 +47,8 @@ class ModelTrainer:
 
     def custom_preprocessing(self, raw_text: str) -> tf.string:
         lowercase = tf.strings.lower(raw_text)
-        stripped_html = tf.strings.regex_replace(lowercase, "<br />", " ")
-        return tf.strings.regex_replace(stripped_html, "[%s]" % re.escape(string.punctuation), '')
+        stripped_html = tf.strings.regex_replace(lowercase, '<br />', ' ')
+        return tf.strings.regex_replace(stripped_html, '[%s]' % re.escape(string.punctuation), '')
 
     def init_vectorize_layer(self, text_dataset: np.ndarray) -> TextVectorization:
         text_vectorizer = TextVectorization(max_tokens=self.max_features,
@@ -77,7 +77,7 @@ class ModelTrainer:
         self.tf_model_wrapper = TFModel(model)
         tf.saved_model.save(self.tf_model_wrapper.model, f'classifier/saved_models/{int(time.time())}',
                             signatures={'serving_default': self.tf_model_wrapper.prediction})
-        logger.info('saving SavedModel to saved_models/1')
+        logger.info('saving SavedModel to classifier/saved_models')
 
 
 if __name__ == '__main__':
