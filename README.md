@@ -4,6 +4,8 @@ Serving a sentiment analysis model (movie review sentiment) using Tensorflow 2.0
 
 If you're using Tensorflow 1.X, please refer to my [toxic-comment-classifier](https://github.com/happilyeverafter95/toxic-comment-classifer) for a serving example with a text classifier. I would recommend migrating to the newer versions as Tensorflow 2.X introduces a lot of additional support for NLP models.
 
+See [accompanying Medium article](https://towardsdatascience.com/deploying-a-text-classifier-with-tensorflow-serving-docker-in-2-0-cba6851e46ed?source=post_stats_page-------------------------------------) for more detail.
+
 ## Usage Requirements
 
 Training script written and tested for in Python 3.8
